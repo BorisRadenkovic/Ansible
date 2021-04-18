@@ -1,0 +1,11 @@
+---
+-
+  hosts: "*"
+  - name: "misc task on ubuntu"
+    tasks:
+
+      debug: var=ansible_host
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+

@@ -1,0 +1,8 @@
+---
+- hosts: server1
+  become: yes
+  tasks:
+      - name: clone github repo
+        git:
+          repo: https://github.com/brki18/devops_web_goat.git
+          dest: /home/boris3/clone_repo

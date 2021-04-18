@@ -1,0 +1,19 @@
+---
+
+
+- hosts: server1
+
+  become: yes
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    
+  tasks:
+    - name: Install httpd service
+      apt:
+        name: httpd
+        state: present
+
+    - name: Start httpd service
+      apt:
+        name: httpd
+        state: started
