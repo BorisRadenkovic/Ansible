@@ -1,7 +1,7 @@
 ---
 - hosts: tomcatServer
   vars:
-    - warName: helloworld.war
+    - warName: webgoat-server-v8.1.0.war
     - warRemotePath: /path/to/put/war
 
   tasks:
