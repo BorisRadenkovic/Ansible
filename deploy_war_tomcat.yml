@@ -3,7 +3,7 @@
   vars:
     - warName: webgoat-server-v8.1.0.war
     - warRemotePath: /path/to/put/war
-
+//putanja catalina/webaaps
   tasks:
     - name: Create war file
 
