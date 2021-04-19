@@ -4,8 +4,9 @@
     - warName: helloworld.war
     - warRemotePath: /path/to/put/war
 
-
   tasks:
+    - name: Create war file
+
     - name: Download WAR to server
       synchronize: src={{ warLocalPath }}/{{ warName }} dest={{ warRemotePath }}/{{ warName }}
 
