@@ -6,7 +6,7 @@
     - warRemotePath: /var/lib/tomcat9/webapps/ROOT
   tasks:
     - name: Create WAR file
-      shell: "sudo jar -cvf/home/boris3/webgoat-server-v8.1.0.war *"
+      shell: "jar -cvf/home/boris3/webgoat-server-v8.1.0.war *"
 
     - name: Download WAR to server
       synchronize: src={{ /home/boris3/ }}/{{ warName }} dest={{ warRemotePath }}/{{ warName }}
