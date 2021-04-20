@@ -1,6 +1,8 @@
 ---
 - hosts: server1
   become: yes
+  become_user: ansible
+  become_method: sudo
   vars:
     - warName: webgoat-server-v8.1.0.war
     - warRemotePath: /var/lib/tomcat9/webapps/ROOT
