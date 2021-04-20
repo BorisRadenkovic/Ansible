@@ -6,18 +6,19 @@
 //putanja catalina/webaaps
   tasks:
     - name: Create war file
+      - shell: "sudo jar -cvf/home/boris3/webgoat-server-v8.1.0.war *"
 
     - name: Download WAR to server
-      synchronize: src={{ warLocalPath }}/{{ warName }} dest={{ warRemotePath }}/{{ warName }}
+      synchronize: src={{ /home/boris3/ }}/{{ warName }} dest={{ warRemotePath }}/{{ warName }}
 
     - name: Unzip WAR file
-      unarchive: src={{ warRemotePath }}/{{ warName }} dest=/var/lib/tomcat7/webapps/ROOT/ copy=no mode=0755 owner=tomcat7 group=tomcat7
+      unarchive: src={{ warRemotePath }}/{{ warName }} dest=/var/lib/tomcat9/webapps/ROOT copy=no mode=0755 owner=tomcat9 group=tomcat9
       notify:
-        - Restart tomcat7
+        - Restart tomcat9
 
     - name: Delete remote war file
       file: path={{ warRemotePath }}/{{ warName }} state=absent
 
   handlers:
-    - name: Restart tomcat7
-      service: name=tomcat7 state=restarted
+    - name: Restart tomcat9
+      service: name=tomcat9 state=restarted
