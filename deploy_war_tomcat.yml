@@ -2,10 +2,9 @@
 - hosts: tomcatServer
   vars:
     - warName: webgoat-server-v8.1.0.war
-    - warRemotePath: /path/to/put/war
-//putanja catalina/webaaps
+    - warRemotePath: /var/lib/tomcat9/webapps/ROOT
   tasks:
-    - name: Create war file
+    - name: Create WAR file
       - shell: "sudo jar -cvf/home/boris3/webgoat-server-v8.1.0.war *"
 
     - name: Download WAR to server
