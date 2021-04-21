@@ -8,15 +8,16 @@
   vars:
     - warName: webgoat-server-v8.1.0.war
     - warRemotePath: /var/lib/tomcat9/webapps/ROOT
+    - warLocalPath: /home/boris3
     - ansible_python_interpreter: /usr/bin/python3
   tasks:
     - name: Create WAR file
       shell: "jar -cf webgoat-server-v8.1.0.war *"
       ignore_errors: true
       args:
-          chdir: /home/boris3/
+          chdir: {{ warLocalPath }}
     - name: Download WAR to server
-      synchronize: src={{ /home/boris3/ }}/{{ warName }} dest={{ warRemotePath }}/{{ warName }}
+      synchronize: src={{ warLocalPath }}/{{ warName }} dest={{ warRemotePath }}/{{ warName }}
 
     - name: Unzip WAR file
       unarchive: src={{ warRemotePath }}/{{ warName }} dest=/var/lib/tomcat9/webapps/ROOT copy=no mode=0755 owner=tomcat9 group=tomcat9
