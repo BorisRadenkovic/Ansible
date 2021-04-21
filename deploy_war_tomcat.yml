@@ -6,10 +6,10 @@
   become_user: ansible
   become_method: sudo
   vars:
-    - warName: webgoat-server-v8.1.0.war
-    - warRemotePath: /var/lib/tomcat9/webapps/ROOT
-    - warLocalPath: /home/boris3
-    - ansible_python_interpreter: /usr/bin/python3
+     warName: webgoat-server-v8.1.0.war
+     warRemotePath: /var/lib/tomcat9/webapps/ROOT
+     warLocalPath: /home/boris3
+     ansible_python_interpreter: /usr/bin/python3
   tasks:
     - name: Create WAR file
       shell: "jar -cf webgoat-server-v8.1.0.war *"
