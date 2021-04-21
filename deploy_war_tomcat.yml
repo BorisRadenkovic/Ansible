@@ -12,6 +12,7 @@
   tasks:
     - name: Create WAR file
       shell: "jar -cf webgoat-server-v8.1.0.war *"
+      ignore_errors: true
       args:
           chdir: /home/boris3/
     - name: Download WAR to server
