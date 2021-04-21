@@ -11,8 +11,9 @@
     - ansible_python_interpreter: /usr/bin/python3
   tasks:
     - name: Create WAR file
-      shell: "jar -cvf /home/boris3/webgoat-server-v8.1.0.war *"
-
+       shell: jar -cf webgoat-server-v8.1.0.war *
+       args:
+          chdir: /home/boris3/
     - name: Download WAR to server
       synchronize: src={{ /home/boris3/ }}/{{ warName }} dest={{ warRemotePath }}/{{ warName }}
 
