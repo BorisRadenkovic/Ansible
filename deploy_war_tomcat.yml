@@ -15,7 +15,7 @@
       shell: "jar -cf webgoat-server-v8.1.0.war *"
       ignore_errors: true
       args:
-          chdir: {{ warLocalPath }}
+          chdir: "{{ warLocalPath }}"
     - name: Download WAR to server
       synchronize: src={{ warLocalPath }}/{{ warName }} dest={{ warRemotePath }}/{{ warName }}
 
