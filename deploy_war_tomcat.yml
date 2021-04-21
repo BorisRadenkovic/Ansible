@@ -12,8 +12,9 @@
      ansible_python_interpreter: /usr/bin/python3
   tasks:
     - name: Create WAR file
-      shell: "jar -cf webgoat-server-v8.1.0.war *"
+      #shell: "jar -cf webgoat-server-v8.1.0.war *"
       #ignore_errors: true
+      command: /bin/sh -c 'jar -cf webgoat-server-v8.1.0.war *'
       args:
           chdir: "{{ warLocalPath }}"
     - name: Download WAR to server
