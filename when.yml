@@ -1,0 +1,13 @@
+---
+
+- hosts: server1
+
+  tasks:
+    - name: Use when as a condition
+      command: date
+      register: date
+
+    - name: Print the date
+      when: "'01:30' in date.stdout"
+      debug:
+        msg: "{{ date.stdout }}"

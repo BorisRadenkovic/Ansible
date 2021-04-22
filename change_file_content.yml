@@ -8,6 +8,6 @@
       lineinfile:
         dest: "/home/boris3/testFile"
         regexp: "key2="
-        line: "key2=xxx"
+        line: "key2=123456"
         state: present
 
