@@ -31,19 +31,24 @@
       #args:
           #chdir: /home/boris3
 
-    - name: Wait for war to be created
-      wait_for:
-        path: /home/boris3/
 
     - name: Deploy WAR to Tomcat server
       #synchronize: src={{ warLocalPath }}/{{ warName }} dest={{ warRemotePath }}/{{ warName }}
       shell: "cp /home/boris3/webgoat-server-v8.1.0.war /var/lib/tomcat9/webapps/"
 
+    - name: Wait for war to be created
+      wait_for:
+          path: /home/boris3/webgoat-server-v8.1.0.war
+
+    - name: Delete jar copy
+      file:
+          path: /home/boris3/webgoat-server-v8.1.0.jar
+          state: absent
+
     - name: Unzip WAR file
       #unarchive: src={{ warRemotePath }}/{{ warName }} dest=/var/lib/tomcat9/webapps/ROOT copy=no mode=0755 owner=tomcat9 group=tomcat9
       shell: "jar xvf /var/lib/tomcat9/webapps/webgoat-server-v8.1.0.war"
       notify: Restart tomcat9
-
 
   handlers:
     - name: Restart tomcat9
