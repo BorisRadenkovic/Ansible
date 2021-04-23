@@ -5,13 +5,26 @@
   become: yes
   become_user: ansible
   become_method: sudo
+
   vars:
      warName: webgoat-server-v8.1.0.war
      warRemotePath: /var/lib/tomcat9/webapps/ROOT
      warLocalPath: /home/boris3
      ansible_python_interpreter: /usr/bin/python3
+
+
   tasks:
-    - name: Create WAR file
+
+    - name: Copy jar to remote
+      copy:
+        src: /home/boris2/webgoat-server-v8.1.0.jar
+        dest: /home/boris3
+        owner: ansible
+        group: ansible
+        mode: 0644
+
+
+    - name: Create WAR file to remote
       shell: "jar -cf /home/boris3/webgoat-server-v8.1.0.war *"
       #ignore_errors: true
       #command: /bin/sh -c 'jar -cf webgoat-server-v8.1.0.war *'
@@ -20,22 +33,21 @@
 
     - name: Wait for war to be created
       wait_for:
-        path: /home/boris3
+        path: /home/boris3/
 
-    - name: Download WAR to server
+    - name: Deploy WAR to Tomcat server
       #synchronize: src={{ warLocalPath }}/{{ warName }} dest={{ warRemotePath }}/{{ warName }}
-      shell: "cp /home/boris3/webgoat-server-v8.1.0.war /var/lib/tomcat9/webapps/ROOT"
+      shell: "cp /home/boris3/webgoat-server-v8.1.0.war /var/lib/tomcat9/webapps/"
 
     - name: Unzip WAR file
       #unarchive: src={{ warRemotePath }}/{{ warName }} dest=/var/lib/tomcat9/webapps/ROOT copy=no mode=0755 owner=tomcat9 group=tomcat9
-      shell: "jar xvf /var/lib/tomcat9/webapps/ROOT/webgoat-server-v8.1.0.war"
-      notify: "Restart tomcat9"
-
+      shell: "jar xvf /var/lib/tomcat9/webapps/webgoat-server-v8.1.0.war"
+      notify: Restart tomcat9
 
 
   handlers:
-    - name: "Restart tomcat9"
-      shell: "service tomcat9 restart"
+    - name: Restart tomcat9
+      shell: "sudo service tomcat9 restart"
       #service:
         #name: tomcat9.service
         #state: restarted
