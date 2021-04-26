@@ -11,3 +11,4 @@ vars_prompt:
   - name: password
     prompt: "Please enter your password"
     private: yes
+    confirm: yes
