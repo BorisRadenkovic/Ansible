@@ -12,3 +12,8 @@ vars_prompt:
     prompt: "Please enter your password"
     private: yes
     confirm: yes
+
+task:
+  - name: Print variables
+    debug:
+      msg: "{{ username }} : {{ password }}"
