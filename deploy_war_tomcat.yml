@@ -51,8 +51,4 @@
       notify: Restart tomcat9
 
   handlers:
-    - name: Restart tomcat9
-      shell: "sudo service tomcat9 restart"
-      #service:
-        #name: tomcat9.service
-        #state: restarted
+    - include: include_tasks.yml
