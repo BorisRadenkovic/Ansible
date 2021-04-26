@@ -2,7 +2,7 @@
 ---
 
 - name: Restart tomcat9
-    shell: "sudo service tomcat9 restart"
+  shell: "sudo service tomcat9 restart"
       #service:
       #name: tomcat9.service
       #state: restarted
