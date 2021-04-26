@@ -1,0 +1,17 @@
+
+---
+
+- hosts: webservers
+  tags: deploy
+
+  roles:
+    - {role: tomcat, tags: ['tomcat', 'app']}
+
+  tasks:
+    - name: task_name
+      task action
+      tags:
+        - notifications
+        - action
+  - include: play.yml
+      tags: play
